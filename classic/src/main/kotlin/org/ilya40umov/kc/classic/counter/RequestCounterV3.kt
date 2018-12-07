@@ -15,7 +15,6 @@ class RequestCounterV3 {
     @GetMapping
     fun getValue() = "$counter\n"
 
-    @Synchronized
     @PostMapping
-    fun incrementValue() = "${++counter}\n"
+    fun incrementValue() = synchronized(this) { "${++counter}\n" }
 }

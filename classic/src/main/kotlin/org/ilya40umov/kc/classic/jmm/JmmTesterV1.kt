@@ -1,6 +1,6 @@
 package org.ilya40umov.kc.classic.jmm
 
-import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 import kotlin.concurrent.thread
@@ -19,8 +19,8 @@ class JmmTesterV1 {
 
     private var value = ImmutableHolder(1, 1)
 
-    @GetMapping
-    fun checkValue(): String {
+    @PostMapping
+    fun incrementAndCheckValue(): String {
         thread(isDaemon = true) {
             val locRef = value
             value = ImmutableHolder(a = locRef.getA() + 1, b = locRef.getB() + 1)
