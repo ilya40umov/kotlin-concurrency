@@ -25,3 +25,13 @@ ab -c 1000 -n 100000 -m POST localhost:8080/jmm/v1
 curl -XGET localhost:8080/wait/v1
 ab -c 1000 -n 100000 -m GET localhost:8080/wait/v1
 ```
+
+## Combine Results
+
+```bash
+curl -XGET localhost:8080/combine/v1
+ab -c 10 -n 100 -m GET localhost:8080/combine/v1
+ab -c 1000 -n 1000 -m GET localhost:8080/combine/v1
+
+```
+

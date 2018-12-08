@@ -1,4 +1,4 @@
-package org.ilya40umov.kc.classic.lists
+package org.ilya40umov.kc.classic.wait
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
