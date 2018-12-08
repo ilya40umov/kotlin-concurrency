@@ -17,10 +17,10 @@ class CombineResultsV3(
 ) {
 
     private fun getRandomUserId(): Int =
-        restTemplate.getForEntity<String>("http://127.0.0.1:8080/demo/random_user_id").body?.toInt() ?: -1
+        restTemplate.getForEntity<String>("http://127.0.0.1:7070/demo/random_user_id").body?.toInt() ?: -1
 
     private fun getUserName(userId: Int): String =
-        restTemplate.getForEntity<String>("http://127.0.0.1:8080/demo/user_name?id=$userId").body ?: "n/a"
+        restTemplate.getForEntity<String>("http://127.0.0.1:7070/demo/user_name?id=$userId").body ?: "n/a"
 
     @GetMapping
     fun combineAsyncResults(): String {
