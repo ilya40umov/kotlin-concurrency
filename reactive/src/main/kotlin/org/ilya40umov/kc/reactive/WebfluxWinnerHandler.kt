@@ -13,7 +13,7 @@ import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 @Component
-class CombineResultsHandler {
+class WebfluxWinnerHandler {
 
     private val webClient = WebClient.create("http://127.0.0.1:8080")
 
@@ -31,25 +31,29 @@ class CombineResultsHandler {
             .flatMap { it.toEntity<String>() }
             .map { it.body }
 
-    fun combineSingle(request: ServerRequest): Mono<ServerResponse> {
+    fun determineSingle(request: ServerRequest): Mono<ServerResponse> {
         return getRandomUserId().flatMap { userId ->
             getUserName(userId).map { userName -> userId to userName }
         }.flatMap { (userId, userName) ->
-            ok().body(fromObject("#$userId: $userName"))
+            ok().body(fromObject("Winner is: #$userId - $userName\n"))
         }
     }
 
-    private fun getRandomUserIds(): Flux<Int> =
+    private fun getRandomUserIds(limit: Int): Flux<Int> =
         webClient.get()
-            .uri("/demo/random_user_ids")
+            .uri("/demo/random_user_ids?limit=$limit")
             .exchange()
             .flatMapMany { it.bodyToFlux<String>() }
             .map { it.replace("""\s+""".toRegex(), "").toInt() }
 
-    fun combineStream(request: ServerRequest): Mono<ServerResponse> {
-        val combinedStream = getRandomUserIds().flatMap { userId ->
+    fun determineStream(request: ServerRequest): Mono<ServerResponse> {
+        val limit =
+            request.queryParam("limit")
+                .map { it.toInt() }
+                .orElseGet { 10 }
+        val combinedStream = getRandomUserIds(limit).flatMap { userId ->
             getUserName(userId)
-                .map { userName -> "#$userId: $userName" }
+                .map { userName -> "Winner is: #$userId - $userName" }
         }.onBackpressureBuffer()
         return ok().bodyToServerSentEvents(combinedStream)
     }

@@ -33,4 +33,6 @@ dependencies {
     compile(kotlin("stdlib-jdk8"))
     compile("org.springframework.boot:spring-boot-starter-webflux")
     compile("org.springframework.boot:spring-boot-devtools")
+    compile("com.typesafe.akka:akka-actor_2.12:2.5.19")
+    compile("org.scala-lang.modules:scala-java8-compat_2.12:0.9.0")
 }

@@ -25,15 +25,15 @@ class CombineResultsV1(
     fun combineAsyncResults(): String {
         val userIdLatch = CountDownLatch(1)
         val userNameLatch = CountDownLatch(1)
-        var userId = 0
-        var userName = ""
+        var userId: Int? = null
+        var userName: String? = null
         thread(isDaemon = true) {
             userId = getRandomUserId()
             userIdLatch.countDown()
         }
         thread(isDaemon = true) {
             userIdLatch.await()
-            userName = getUserName(userId)
+            userName = getUserName(userId!!)
             userNameLatch.countDown()
         }
         userNameLatch.await()
