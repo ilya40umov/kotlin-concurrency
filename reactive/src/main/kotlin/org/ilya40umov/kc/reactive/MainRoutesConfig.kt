@@ -1,5 +1,7 @@
 package org.ilya40umov.kc.reactive
 
+import org.ilya40umov.kc.reactive.akka.AkkaWinnerHandler
+import org.ilya40umov.kc.reactive.webflux.WebfluxWinnerHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.router

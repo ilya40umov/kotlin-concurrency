@@ -1,16 +1,19 @@
-package org.ilya40umov.kc.reactive.actors
+package org.ilya40umov.kc.reactive.akka.actors
 
 import akka.actor.AbstractActor
 import akka.actor.ActorRef
+import akka.actor.Cancellable
 import akka.actor.PoisonPill
-import org.ilya40umov.kc.reactive.actors.DemoApiAccessor.Companion.RandomUserId
-import org.ilya40umov.kc.reactive.actors.DemoApiAccessor.Companion.RetrieveRandomUserId
-import org.ilya40umov.kc.reactive.actors.DemoApiAccessor.Companion.RetrieveUserName
-import org.ilya40umov.kc.reactive.actors.DemoApiAccessor.Companion.RetrievedUserName
+import mu.KLogging
+import org.ilya40umov.kc.reactive.akka.actors.DemoApiAccessor.Companion.RandomUserId
+import org.ilya40umov.kc.reactive.akka.actors.DemoApiAccessor.Companion.RetrieveRandomUserId
+import org.ilya40umov.kc.reactive.akka.actors.DemoApiAccessor.Companion.RetrieveUserName
+import org.ilya40umov.kc.reactive.akka.actors.DemoApiAccessor.Companion.RetrievedUserName
 import org.springframework.beans.factory.annotation.Qualifier
 import org.springframework.beans.factory.config.ConfigurableBeanFactory
 import org.springframework.context.annotation.Scope
 import org.springframework.stereotype.Component
+import java.time.Duration
 
 @Component
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -19,7 +22,19 @@ class SingleWinnerChooser(
 ) : AbstractActor() {
 
     private lateinit var originator: ActorRef
-    private var userId: Int = 0
+    private var obtainedUserId: Int? = null
+    private lateinit var selfShutdown: Cancellable
+
+    override fun preStart() {
+        selfShutdown = context.system.scheduler.scheduleOnce(
+            Duration.ofSeconds(30),
+            {
+                logger.info { "Cleaning up a 'stuck' winner chooser..." }
+                self.tell(PoisonPill.getInstance(), self)
+            },
+            context.dispatcher()
+        )
+    }
 
     override fun createReceive(): Receive =
         receiveBuilder()
@@ -28,16 +43,17 @@ class SingleWinnerChooser(
                 demoApiAccessManager.tell(RetrieveRandomUserId, self)
             }
             .match(RandomUserId::class.java) { (userId) ->
-                this.userId = userId
+                obtainedUserId = userId
                 demoApiAccessManager.tell(RetrieveUserName(userId), self)
             }
             .match(RetrievedUserName::class.java) { (userName) ->
-                originator.tell(WinnerDetails("#$userId: $userName"), self)
+                originator.tell(WinnerDetails("#$obtainedUserId: $userName"), self)
+                selfShutdown.cancel()
                 self.tell(PoisonPill.getInstance(), self)
             }
             .build()
 
-    companion object {
+    companion object : KLogging() {
         object ChooseWinner
         data class WinnerDetails(val details: String)
     }

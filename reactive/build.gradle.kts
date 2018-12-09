@@ -35,4 +35,5 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools")
     compile("com.typesafe.akka:akka-actor_2.12:2.5.19")
     compile("org.scala-lang.modules:scala-java8-compat_2.12:0.9.0")
+    compile("io.github.microutils:kotlin-logging:1.6.22")
 }

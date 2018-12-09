@@ -1,4 +1,4 @@
-package org.ilya40umov.kc.reactive
+package org.ilya40umov.kc.reactive.demo
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration

@@ -1,4 +1,4 @@
-package org.ilya40umov.kc.reactive.akka
+package org.ilya40umov.kc.reactive.akka.helper
 
 import akka.actor.Actor
 import akka.actor.IndirectActorProducer

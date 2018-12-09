@@ -1,8 +1,8 @@
-package org.ilya40umov.kc.reactive.akka
+package org.ilya40umov.kc.reactive.akka.helper
 
 import akka.actor.ActorRef
 import akka.actor.ActorSystem
-import org.ilya40umov.kc.reactive.actors.DemoApiAccessManager
+import org.ilya40umov.kc.reactive.akka.actors.DemoApiAccessManager
 import org.springframework.context.ApplicationContext
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
