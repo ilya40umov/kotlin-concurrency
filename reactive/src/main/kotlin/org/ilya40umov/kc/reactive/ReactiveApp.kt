@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ReactiveConcurrencyApplication
+class ReactiveApp
 
 fun main(args: Array<String>) {
-    runApplication<ReactiveConcurrencyApplication>(*args)
+    runApplication<ReactiveApp>(*args)
 }

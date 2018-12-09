@@ -27,7 +27,7 @@ class DemoApiAccessManager : AbstractActor() {
             .build()
 
     override fun preStart() {
-        repeat(10) { idx ->
+        repeat(100) { idx ->
             context.actorOf(DemoApiAccessor::class, "demo-api-accessor-$idx")
         }
     }

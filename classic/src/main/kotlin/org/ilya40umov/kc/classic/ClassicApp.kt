@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @SpringBootApplication
-class ClassicConcurrencyApplication {
+class ClassicApp {
 
     @Bean
     fun executor(): ExecutorService = Executors.newCachedThreadPool()
@@ -18,5 +18,5 @@ class ClassicConcurrencyApplication {
 }
 
 fun main(args: Array<String>) {
-    runApplication<ClassicConcurrencyApplication>(*args)
+    runApplication<ClassicApp>(*args)
 }

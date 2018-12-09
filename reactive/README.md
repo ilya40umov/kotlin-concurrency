@@ -8,6 +8,7 @@
 
 ```bash
 curl -XGET localhost:8080/webflux/winner/single
+ab -c 100 -n 100000 -m GET localhost:8080/webflux/winner/single
 ab -c 1000 -n 100000 -m GET localhost:8080/webflux/winner/single
 
 curl -XGET localhost:8080/webflux/winner/stream
@@ -17,5 +18,6 @@ curl -XGET localhost:8080/webflux/winner/stream
 
 ```bash
 curl -XGET localhost:8080/akka/winner/single
+ab -c 100 -n 100000 -m GET localhost:8080/akka/winner/single
 ab -c 1000 -n 100000 -m GET localhost:8080/akka/winner/single
 ```
