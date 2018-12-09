@@ -32,5 +32,4 @@ ab -c 1000 -n 100000 -m GET localhost:7070/wait/v1
 curl -XGET localhost:7070/combine/v1
 ab -c 10 -n 100 -m GET localhost:7070/combine/v1
 ab -c 100 -n 100000 -m GET localhost:7070/combine/v1
-
 ```

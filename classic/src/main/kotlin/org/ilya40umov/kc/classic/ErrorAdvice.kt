@@ -1,5 +1,6 @@
 package org.ilya40umov.kc.classic
 
+import mu.KLogging
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
@@ -13,7 +14,9 @@ class ErrorAdvice {
     @ExceptionHandler(Throwable::class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     fun handleAnyError(e: Throwable): String {
-        println("${e.javaClass.name} ${e.message}")
+        logger.error { "Caught ${e.javaClass.name} ${e.message}" }
         return "${e.javaClass.name} ${e.message}"
     }
+
+    companion object : KLogging()
 }

@@ -9,6 +9,7 @@ import kotlin.concurrent.thread
 @RequestMapping("/jmm/v1")
 class JmmTesterV1 {
 
+    // this looks like an immutable object, right?
     class ImmutableHolder(
         private var a: Long,
         private var b: Long

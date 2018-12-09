@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/counter/v2")
 class RequestCounterV2 {
 
+    // but volatile must fix it, right?
     @Volatile
     private var counter = 0
 

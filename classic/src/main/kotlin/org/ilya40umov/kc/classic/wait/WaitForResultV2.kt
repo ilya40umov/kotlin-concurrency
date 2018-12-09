@@ -10,6 +10,7 @@ import kotlin.concurrent.thread
 @RequestMapping("/wait/v2")
 class WaitForResultV2 {
 
+    // java.util.concurrent has better alternatives to wait/notify
     @GetMapping
     fun calculate(): String {
         val latch = CountDownLatch(1)

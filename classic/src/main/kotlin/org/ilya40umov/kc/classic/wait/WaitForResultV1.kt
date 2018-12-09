@@ -9,6 +9,7 @@ import kotlin.concurrent.thread
 @RequestMapping("/wait/v1")
 class WaitForResultV1 {
 
+    // using wait() / notify() is not error prone at all
     @GetMapping
     fun calculate(): String {
         val lock = Object()

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/counter/v1")
 class RequestCounterV1 {
 
+    // shared mutable state - what can possible go wrong?
     private var counter = 0
 
     @GetMapping

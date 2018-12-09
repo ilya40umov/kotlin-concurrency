@@ -10,6 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger
 @RequestMapping("/counter/v4")
 class RequestCounterV4 {
 
+    // atomics are based on CAS and more efficient than "synchronized"
     private val counter = AtomicInteger()
 
     @GetMapping

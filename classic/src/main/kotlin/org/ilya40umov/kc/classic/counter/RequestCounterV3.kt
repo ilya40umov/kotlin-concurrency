@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/counter/v3")
 class RequestCounterV3 {
 
+    // volatile so that we can safely read it in "getValue()"
+    @Volatile
     private var counter = 0
 
-    @Synchronized
     @GetMapping
     fun getValue() = "$counter\n"
 
+    // synchronized to prevent race conditions, but can we do better?
+    @Synchronized
     @PostMapping
-    fun incrementValue() = synchronized(this) { "${++counter}\n" }
+    fun incrementValue() = "${++counter}\n"
 }

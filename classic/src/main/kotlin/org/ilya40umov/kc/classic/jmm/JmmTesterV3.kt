@@ -18,6 +18,7 @@ class JmmTesterV3 {
         fun getB() = b
     }
 
+    // atomics are build around CAS operations
     private val value = AtomicReference(ImmutableHolder(1, 1))
 
     @PostMapping

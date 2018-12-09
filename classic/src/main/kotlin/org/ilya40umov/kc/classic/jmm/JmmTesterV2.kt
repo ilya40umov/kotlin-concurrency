@@ -9,6 +9,7 @@ import kotlin.concurrent.thread
 @RequestMapping("/jmm/v2")
 class JmmTesterV2 {
 
+    // now it's actually immutable ('val' ==> 'final' in bytecode)
     class ImmutableHolder(
         private val a: Long,
         private val b: Long
@@ -18,6 +19,7 @@ class JmmTesterV2 {
     }
 
     // BTW making this field @Volatile also SEEMS to fix the problem with visibility
+    // but at any rate, is it the only problem with this code?
     private var value = ImmutableHolder(1, 1)
 
     @PostMapping
