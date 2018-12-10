@@ -8,7 +8,7 @@ import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
 
-fun Application.combine() {
+fun Application.winnerSingle() {
     val client = HttpClient()
     routing {
         get("/winner/single") {

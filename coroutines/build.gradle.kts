@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.Coroutines
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "org.ilya40umov.kc"
@@ -33,9 +34,11 @@ tasks {
 
 dependencies {
     compile(kotlin("stdlib-jdk8"))
+    compile("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.0.1")
     compile("io.ktor:ktor-server-netty:1.0.1")
     compile("io.ktor:ktor-html-builder:1.0.1")
     compile("io.ktor:ktor-client-apache:1.0.1")
     compile("ch.qos.logback:logback-classic:1.2.3")
     compile("io.github.microutils:kotlin-logging:1.6.22")
+    compile("io.projectreactor.netty:reactor-netty:0.8.3.RELEASE")
 }
