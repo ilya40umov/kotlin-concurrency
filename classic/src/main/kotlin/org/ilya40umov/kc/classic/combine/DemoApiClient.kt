@@ -10,11 +10,13 @@ class DemoApiClient(
 ) {
     fun getRandomUserId(): Int =
         restTemplate
-            .getForEntity<String>("http://127.0.0.1:7070/demo/random_user_id")
+            .getForEntity<String>(
+                "http://127.0.0.1:7070/demo/random_user_id")
             .body?.toInt() ?: -1
 
     fun getUserName(userId: Int): String =
         restTemplate
-            .getForEntity<String>("http://127.0.0.1:7070/demo/user_name?id=$userId")
+            .getForEntity<String>(
+                "http://127.0.0.1:7070/demo/user_name?id=$userId")
             .body ?: "n/a"
 }

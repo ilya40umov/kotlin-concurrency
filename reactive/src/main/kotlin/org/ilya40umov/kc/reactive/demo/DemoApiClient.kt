@@ -17,7 +17,9 @@ class DemoApiClient {
             .uri("/demo/random_user_id")
             .exchange()
             .flatMap { it.toEntity<String>() }
-            .map { it.body?.replace("""\s+""".toRegex(), "")?.toInt() }
+            .map {
+                it.body?.replace("""\s+""".toRegex(), "")?.toInt()
+            }
 
     fun getUserName(userId: Int): Mono<String> =
         webClient.get()
@@ -31,5 +33,7 @@ class DemoApiClient {
             .uri("/demo/random_user_ids?limit=$limit")
             .exchange()
             .flatMapMany { it.bodyToFlux<String>() }
-            .map { it.replace("""\s+""".toRegex(), "").toInt() }
+            .map {
+                it.replace("""\s+""".toRegex(), "").toInt()
+            }
 }

@@ -13,7 +13,8 @@ import kotlin.random.Random
 fun Application.demoStream() {
     routing {
         get("/demo/random_user_ids") {
-            val limit = context.request.queryParameters["limit"]?.toInt() ?: 10
+            val limit =
+                context.request.queryParameters["limit"]?.toInt() ?: 10
             val channel = produce {
                 repeat(limit) {
                     send(Random.nextInt(1, Int.MAX_VALUE))

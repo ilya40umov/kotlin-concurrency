@@ -47,7 +47,10 @@ class SingleWinnerChooser(
                 demoApiAccessManager.tell(RetrieveUserName(userId), self)
             }
             .match(RetrievedUserName::class.java) { (userName) ->
-                originator.tell(WinnerDetails("#$obtainedUserId: $userName"), self)
+                originator.tell(
+                    WinnerDetails("#$obtainedUserId: $userName"),
+                    self
+                )
                 selfShutdown.cancel()
                 self.tell(PoisonPill.getInstance(), self)
             }

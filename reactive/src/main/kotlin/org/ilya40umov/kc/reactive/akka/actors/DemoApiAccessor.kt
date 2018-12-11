@@ -23,8 +23,9 @@ class DemoApiAccessor(
                 val senderRef = sender
                 demoApiClient.getRandomUserId()
                     .doOnSuccess { userId ->
-                        // ACHTUNG!!! You can't access actor's internal state in here
-                        senderRef.tell(RandomUserId(userId = userId), self)
+                        // ACHTUNG!!!
+                        // You can't access actor's internal state in here
+                        senderRef.tell(RandomUserId(userId), self)
                         context.parent.tell(GimmeWork, self)
                     }
                     .subscribe()
@@ -33,8 +34,9 @@ class DemoApiAccessor(
                 val senderRef = sender
                 demoApiClient.getUserName(userId)
                     .doOnSuccess { userName ->
-                        // ACHTUNG!!! You can't access actor's internal state in here
-                        senderRef.tell(RetrievedUserName(userName = userName), self)
+                        // ACHTUNG!!!
+                        // You can't access actor's internal state in here
+                        senderRef.tell(RetrievedUserName(userName), self)
                         context.parent.tell(GimmeWork, self)
                     }
                     .subscribe()

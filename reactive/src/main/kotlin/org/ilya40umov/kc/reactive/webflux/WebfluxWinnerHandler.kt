@@ -16,7 +16,9 @@ class WebfluxWinnerHandler(
 
     fun determineSingle(request: ServerRequest): Mono<ServerResponse> {
         return demoApiClient.getRandomUserId().flatMap { userId ->
-            demoApiClient.getUserName(userId).map { userName -> userId to userName }
+            demoApiClient.getUserName(userId).map { userName ->
+                userId to userName
+            }
         }.flatMap { (userId, userName) ->
             ok().body(fromObject("Winner is: #$userId - $userName\n"))
         }
@@ -27,10 +29,13 @@ class WebfluxWinnerHandler(
             request.queryParam("limit")
                 .map { it.toInt() }
                 .orElseGet { 10 }
-        val combinedStream = demoApiClient.getRandomUserIds(limit).flatMap { userId ->
-            demoApiClient.getUserName(userId)
-                .map { userName -> "Winner is: #$userId - $userName" }
-        }.onBackpressureBuffer()
+        val combinedStream =
+            demoApiClient.getRandomUserIds(limit).flatMap { userId ->
+                demoApiClient.getUserName(userId)
+                    .map { userName ->
+                        "Winner is: #$userId - $userName"
+                    }
+            }.onBackpressureBuffer()
         return ok().bodyToServerSentEvents(combinedStream)
     }
 }

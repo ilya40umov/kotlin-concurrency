@@ -12,7 +12,9 @@ const val SSE_PREFIX = "data: "
 
 suspend fun <T> ApplicationCall.respondSse(events: ReceiveChannel<T>) {
     response.header(HttpHeaders.CacheControl, "no-cache")
-    respondTextWriter(contentType = ContentTypeTextEventStream) {
+    respondTextWriter(
+        contentType = ContentTypeTextEventStream
+    ) {
         for (event in events) {
             write("$SSE_PREFIX$event\n\n")
             flush()

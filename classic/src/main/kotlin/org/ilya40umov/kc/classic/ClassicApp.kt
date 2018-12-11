@@ -11,10 +11,12 @@ import java.util.concurrent.Executors
 class ClassicApp {
 
     @Bean
-    fun executor(): ExecutorService = Executors.newCachedThreadPool()
+    fun executor(): ExecutorService =
+        Executors.newCachedThreadPool()
 
     @Bean
-    fun restTemplate(): RestTemplate = RestTemplate()
+    fun restTemplate(): RestTemplate =
+        RestTemplate()
 }
 
 fun main(args: Array<String>) {

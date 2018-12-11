@@ -24,7 +24,11 @@ object SpringExtension : AbstractExtensionId<SpringExtension.SpringExt>() {
         }
 
         fun props(actorClass: KClass<out Actor>): Props {
-            return Props.create(SpringActorProducer::class.java, applicationContext, actorClass)
+            return Props.create(
+                SpringActorProducer::class.java,
+                applicationContext,
+                actorClass
+            )
         }
     }
 }

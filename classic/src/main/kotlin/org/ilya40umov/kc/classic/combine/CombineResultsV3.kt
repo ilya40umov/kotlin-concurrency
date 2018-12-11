@@ -14,12 +14,17 @@ class CombineResultsV3(
 ) {
 
     // using ExecutorService & Future - more concise
-    // BUT Java's Future lacks "combinators" => you can only call .get() that blocks
+    // BUT Java's Future lacks "combinators"
+    // => you can only call .get() that blocks
     @GetMapping
     fun combineAsyncResults(): String {
-        val userId: Future<Int> = executor.submit<Int> { demoApiClient.getRandomUserId() }
-        val userName: Future<String> = executor.submit<String> { demoApiClient.getUserName(userId.get()) }
-        // with java.unit.concurrent.Future you can only call a blocking .get() method
+        val userId: Future<Int> = executor.submit<Int> {
+            demoApiClient.getRandomUserId()
+        }
+        val userName: Future<String> = executor.submit<String> {
+            demoApiClient.getUserName(userId.get())
+        }
+        // with this Future you only get a blocking .get() method
         return "#${userId.get()}: ${userName.get()}\n"
     }
 }

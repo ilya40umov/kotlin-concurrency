@@ -21,7 +21,9 @@ class WaitForResultV2 {
             latch.countDown()
         }
         latch.await()
-        if (value != 42) throw RuntimeException("Oops: the value is NOT forty two!")
+        if (value != 42) {
+            throw RuntimeException("Oops: the value is NOT forty two!")
+        }
         return "$value \n"
     }
 }

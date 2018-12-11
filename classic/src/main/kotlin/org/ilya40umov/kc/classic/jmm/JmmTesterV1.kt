@@ -24,7 +24,10 @@ class JmmTesterV1 {
     fun incrementAndCheckValue(): String {
         thread(isDaemon = true) {
             val locRef = value
-            value = ImmutableHolder(a = locRef.getA() + 1, b = locRef.getB() + 1)
+            value = ImmutableHolder(
+                a = locRef.getA() + 1,
+                b = locRef.getB() + 1
+            )
         }.join()
         val locRef = value
         val a = locRef.getA()

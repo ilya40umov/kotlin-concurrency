@@ -26,7 +26,10 @@ class JmmTesterV3 {
         thread(isDaemon = true) {
             do {
                 val locRef = this.value.get()
-                val newRef = ImmutableHolder(a = locRef.getA() + 1, b = locRef.getB() + 1)
+                val newRef = ImmutableHolder(
+                    a = locRef.getA() + 1,
+                    b = locRef.getB() + 1
+                )
             } while (!value.compareAndSet(locRef, newRef))
         }.join()
         val locRef = this.value.get()

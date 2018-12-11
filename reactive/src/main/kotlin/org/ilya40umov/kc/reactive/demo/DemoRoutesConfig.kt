@@ -20,9 +20,17 @@ class DemoRoutesConfig {
                 ok().body(BodyInserters.fromObject("$randomId"))
             }
             GET("/user_name") { request ->
-                val userId = request.queryParam("id").map { it.toInt() }.orElse(null)
+                val userId = request
+                    .queryParam("id")
+                    .map {
+                        it.toInt()
+                    }.orElse(null)
                 when (userId) {
-                    null -> badRequest().body(BodyInserters.fromObject("Param `id` is missing!\n"))
+                    null -> badRequest().body(
+                        BodyInserters.fromObject(
+                            "Param `id` is missing!\n"
+                        )
+                    )
                     else -> {
                         val userName = if (userId % 2 == 0) "Jack" else "Jill"
                         ok().body(BodyInserters.fromObject(userName))
@@ -35,10 +43,13 @@ class DemoRoutesConfig {
                         .map { it.toInt() }
                         .orElseGet { 10 }
                 val ids =
-                    Flux.generate<Int> { it.next(Random.nextInt(1, Int.MAX_VALUE)) }
-                        .delayElements(Duration.ofMillis(300L))
-                        .map { it.toString() }
-                        .take(limit.toLong())
+                    Flux.generate<Int> {
+                        it.next(Random.nextInt(1, Int.MAX_VALUE))
+                    }.delayElements(
+                        Duration.ofMillis(300L)
+                    ).map {
+                        it.toString()
+                    }.take(limit.toLong())
                 ok().bodyToServerSentEvents(ids)
             }
         }

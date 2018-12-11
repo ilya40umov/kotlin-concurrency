@@ -13,13 +13,16 @@ class AkkaConfig {
     @Bean
     fun actorSystem(applicationContext: ApplicationContext): ActorSystem =
         ActorSystem.create("reactive-demo").also { system ->
-            SpringExtension.get(system).also { extension ->
-                extension.initialize(applicationContext)
-                // TODO create access manager
-            }
+            SpringExtension.get(system)
+                .also { extension ->
+                    extension.initialize(applicationContext)
+                }
         }
 
     @Bean
     fun demoApiAccessManagerRef(actorSystem: ActorSystem): ActorRef =
-        actorSystem.actorOf(DemoApiAccessManager::class, "demo-api-access-manager")
+        actorSystem.actorOf(
+            DemoApiAccessManager::class,
+            "demo-api-access-manager"
+        )
 }

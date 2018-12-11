@@ -14,11 +14,15 @@ class CombineResultsV5(
     private val executor: ExecutorService
 ) {
 
-    private fun <V> ExecutorService.computeAsync(call: () -> V): CompletableFuture<V> =
-        CompletableFuture.supplyAsync(Supplier { call() }, this)
+    private fun <V> ExecutorService.computeAsync(
+        call: () -> V
+    ): CompletableFuture<V> = CompletableFuture.supplyAsync(
+        Supplier { call() },
+        this
+    )
 
-    // Spring MVC supports returning CompletableFuture to unblock the thread until the result is ready
-    // BTW you can also use Spring's DeferredResult as alternative to CompletableFuture
+    // Spring MVC supports returning CompletableFuture
+    // to unblock the thread until the result is ready
     @GetMapping
     fun combineAsyncResults(): CompletableFuture<String> =
         executor.computeAsync {

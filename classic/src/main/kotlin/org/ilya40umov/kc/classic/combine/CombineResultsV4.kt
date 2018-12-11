@@ -14,11 +14,17 @@ class CombineResultsV4(
     private val executor: ExecutorService
 ) {
 
-    // most Java APIs are very verbose and require extensions to reduce boilerplate
-    private fun <V> ExecutorService.computeAsync(call: () -> V): CompletableFuture<V> =
-        CompletableFuture.supplyAsync(Supplier { call() }, this)
+    // most Java APIs are very verbose
+    // and require extensions to reduce boilerplate
+    private fun <V> ExecutorService.computeAsync(
+        call: () -> V
+    ): CompletableFuture<V> = CompletableFuture.supplyAsync(
+        Supplier { call() },
+        this
+    )
 
-    // now using CompletableFuture, yay! - however we still block Tomcat thread...
+    // Now using CompletableFuture, yay!
+    // However, we still block Tomcat thread...
     @GetMapping
     fun combineAsyncResults(): String {
         val futureResult =

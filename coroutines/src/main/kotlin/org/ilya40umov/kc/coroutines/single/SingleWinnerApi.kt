@@ -17,7 +17,9 @@ fun Application.winnerSingle() {
             ).let { userId ->
                 userId.toInt()
             }
-            val userName = client.get<String>("http://127.0.0.1:9090/demo/user_name?id=$userId")
+            val userName = client.get<String>(
+                "http://127.0.0.1:9090/demo/user_name?id=$userId"
+            )
             call.respondText { "Winner is: #$userId - $userName\n" }
         }
     }

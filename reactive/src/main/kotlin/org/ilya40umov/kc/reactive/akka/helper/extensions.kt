@@ -15,19 +15,31 @@ import java.util.concurrent.TimeUnit
 import kotlin.reflect.KClass
 
 fun ActorSystem.actorOf(actorClass: KClass<out Actor>, name: String): ActorRef =
-    this.actorOf(SpringExtension.get(this).props(actorClass), name)
+    this.actorOf(
+        SpringExtension.get(this).props(actorClass),
+        name
+    )
 
 fun ActorRefFactory.actorOf(actorClass: KClass<out Actor>, name: String): ActorRef =
-    this.actorOf(SpringExtension.get(this.systemImpl()).props(actorClass), name)
+    this.actorOf(
+        SpringExtension.get(this.systemImpl()).props(actorClass),
+        name
+    )
 
 fun Duration.toTimeout() =
-    Timeout.durationToTimeout(FiniteDuration(this.toMillis(), TimeUnit.MILLISECONDS))!!
+    Timeout.durationToTimeout(
+        FiniteDuration(this.toMillis(), TimeUnit.MILLISECONDS)
+    )!!
 
 fun Duration.toDeadline() =
     Deadline(FiniteDuration(this.toMillis(), TimeUnit.MILLISECONDS))
 
 fun <V> ActorRef.ask(msg: Any, duration: Duration): CompletionStage<V> {
     @Suppress("UNCHECKED_CAST")
-    val future = akka.pattern.Patterns.ask(this, msg, duration.toTimeout()) as Future<V>
+    val future = akka.pattern.Patterns.ask(
+        this,
+        msg,
+        duration.toTimeout()
+    ) as Future<V>
     return FutureConverters.toJava(future)
 }

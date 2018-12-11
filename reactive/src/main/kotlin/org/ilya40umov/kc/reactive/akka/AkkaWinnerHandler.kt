@@ -21,17 +21,21 @@ class AkkaWinnerHandler(
     private val actorSystem: ActorSystem
 ) {
     fun determineSingle(request: ServerRequest): Mono<ServerResponse> {
-        val chooser = actorSystem.actorOf(SingleWinnerChooser::class, "single-winner-chooser-${UUID.randomUUID()}")
+        val chooser = actorSystem.actorOf(
+            SingleWinnerChooser::class,
+            "single-winner-chooser-${UUID.randomUUID()}"
+        )
         val winnerDetails = chooser.ask<WinnerDetails>(
-            ChooseWinner, // ideally we should have propagated the deadline with the message
+            ChooseWinner,
             Duration.ofSeconds(10)
         )
-        return Mono.fromCompletionStage<WinnerDetails>(winnerDetails).flatMap {
-            ok().body(fromObject("Winner is: ${it.details}\n"))
-        }.onErrorResume { error ->
-            status(500).body(
-                fromObject("Failed to complete due to: ${error.javaClass.name} ${error.message}")
-            )
-        }
+        return Mono.fromCompletionStage<WinnerDetails>(winnerDetails)
+            .flatMap {
+                ok().body(fromObject("Winner is: ${it.details}\n"))
+            }.onErrorResume { error ->
+                status(500).body(
+                    fromObject("Failed to complete due to: ${error.javaClass.name} ${error.message}")
+                )
+            }
     }
 }

@@ -23,7 +23,9 @@ class WaitForResultV1 {
         }
         synchronized(lock) {
             lock.wait()
-            if (value != 42) throw RuntimeException("Oops: the value is NOT forty two!")
+            if (value != 42) {
+                throw RuntimeException("Oops: the value is NOT forty two!")
+            }
             return "$value \n"
         }
     }
