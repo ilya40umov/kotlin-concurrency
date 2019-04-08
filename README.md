@@ -1,10 +1,10 @@
 # kotlin-concurrency
 This project is a collection of mini projects written in Kotlin,
-which show examples of handling various concurrency problems in backend code.
+which show examples of handling various concurrency problems in the backend code.
 
 #### Classic
 Under [classic](https://github.com/ilya40umov/kotlin-concurrency/tree/master/classic)
-you can find examples of approaches classically used in Java's and their potential gotchas.
+you can find examples of approaches classically used in Java's, as well as their potential gotchas.
 (A lot of this code is intentionally miswritten).
 
 #### Reactive

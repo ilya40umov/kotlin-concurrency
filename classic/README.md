@@ -24,6 +24,7 @@ ab -c 1000 -n 100000 -m POST localhost:7070/jmm/v1
 ```bash
 curl -XGET localhost:7070/wait/v1
 ab -c 1000 -n 100000 -m GET localhost:7070/wait/v1
+jstack "$(ps -o pid,args -C java | grep ClassicAppKt | awk '{ print $1 }')" | gedit -
 ```
 
 ## Combine Results

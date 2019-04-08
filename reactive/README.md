@@ -4,6 +4,14 @@
 ./gradlew bootRun
 ```
 
+## Demo API
+```bash
+curl -XGET http://localhost:8080/demo/random_user_id
+curl -XGET http://localhost:8080/demo/user_name?id=1
+curl -XGET http://localhost:8080/demo/user_name?id=2
+curl -XGET http://localhost:8080/demo/random_user_ids
+```
+
 ## Determine Winner (WebFlux)
 
 ```bash

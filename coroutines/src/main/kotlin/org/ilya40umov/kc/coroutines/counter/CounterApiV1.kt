@@ -9,7 +9,7 @@ import io.ktor.routing.route
 import io.ktor.routing.routing
 
 fun Application.counterV1() {
-    // coroutines aren't threads, now I should be safe, right?
+    // troll: coroutines aren't threads, now I should be safe, right?
     var counter = 0
     routing {
         route("/counter") {
