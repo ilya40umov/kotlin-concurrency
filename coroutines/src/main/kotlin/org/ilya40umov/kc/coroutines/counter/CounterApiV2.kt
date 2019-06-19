@@ -29,7 +29,7 @@ fun Application.counterV2() {
                 val counterValue = async(incrementor.context) {
                     ++incrementor.counter
                 }
-                call.respondText { "$counterValue\n" }
+                call.respondText { "${counterValue.await()}\n" }
             }
         }
     }
