@@ -9,13 +9,13 @@ import kotlinx.coroutines.withContext
 
 fun main() {
     val job1 = GlobalScope.launch {
-        while(isActive) {
+        while (isActive) {
             delay(500)
             println("<><><> Finished chunk...")
         }
     }
     val job2 = GlobalScope.launch {
-        while(isActive) {
+        while (isActive) {
             // normally you don't want to immediately terminate an important computation
             withContext(NonCancellable) {
                 delay(3000)

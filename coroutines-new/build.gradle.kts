@@ -7,7 +7,7 @@ val logback_version: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.4.31"
 }
 
 group = "me.ilya40umov"
@@ -26,5 +26,7 @@ dependencies {
     implementation("io.ktor:ktor-server-core:$ktor_version")
     implementation("io.ktor:ktor-server-netty:$ktor_version")
     implementation("ch.qos.logback:logback-classic:$logback_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-slf4j:1.4.3")
+    implementation("io.github.microutils:kotlin-logging:1.12.5")
     testImplementation("io.ktor:ktor-server-tests:$ktor_version")
 }
