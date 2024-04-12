@@ -1,4 +1,5 @@
 server:
   port: 7070
   tomcat:
-    max-threads: 1000 # default is 200
+    threads:
+      max: 1000

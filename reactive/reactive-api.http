@@ -1,0 +1,17 @@
+### Demo API - get random_user_id
+GET http://localhost:8080/demo/random_user_id
+
+### Demo API - get user_name by id
+GET http://localhost:8080/demo/user_name?id=1
+
+### Demo API - get random user IDs (as SSE)
+GET http://localhost:8080/demo/random_user_ids
+
+### Single Winner using WebFlux
+GET http://localhost:8080/webflux/winner/single
+
+### Stream Winners using WebFlux
+GET http://localhost:8080/webflux/winner/stream
+
+### Single Winner using Akka
+GET http://localhost:8080/akka/winner/single
