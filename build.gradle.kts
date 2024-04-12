@@ -4,6 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("org.springframework.boot") version "3.2.4" apply false
     id("io.spring.dependency-management") version "1.1.4" apply false
+    id("io.ktor.plugin") version "2.3.10" apply false
     kotlin("jvm") version "1.9.22" apply false
     kotlin("plugin.spring") version "1.9.22" apply false
 }
@@ -23,6 +24,7 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_17
     }
     dependencies {
+        "implementation"("io.github.oshai:kotlin-logging-jvm:6.0.4")
         val kotestVersion = "5.8.0"
         "implementation"(platform("org.junit:junit-bom:5.10.2"))
         "testImplementation"("io.kotest:kotest-runner-junit5:$kotestVersion")

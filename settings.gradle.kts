@@ -1,6 +1,6 @@
 rootProject.name = "kotlin-concurrency"
 
-include("classic")
-include("reactive")
-//include("coroutines")
+include("01-classic")
+include("02-reactive")
+include("03-coroutines")
 //include("coroutines-new")

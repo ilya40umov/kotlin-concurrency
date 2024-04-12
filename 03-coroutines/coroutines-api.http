@@ -1,0 +1,23 @@
+### Single Winner
+GET http://localhost:9090/winner/single
+
+### Stream Winners
+GET http://localhost:9090/winner/stream
+
+### Counter V1 - GET
+GET http://localhost:9090/counter/v1
+
+### Counter V1 - POST
+POST http://localhost:9090/counter/v1
+
+### Counter V2 - GET
+GET http://localhost:9090/counter/v1
+
+### Counter V2 - POST
+POST http://localhost:9090/counter/v1
+
+### Counter V3 - GET
+GET http://localhost:9090/counter/v1
+
+### Counter V3 - POST
+POST http://localhost:9090/counter/v1

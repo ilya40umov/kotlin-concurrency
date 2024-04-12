@@ -1,0 +1,13 @@
+ktor:
+  deployment:
+    port: 9090
+  application:
+    modules:
+      - me.ilya40umov.kc.coroutines.MainApiKt.main
+      - me.ilya40umov.kc.coroutines.single.DemoApiKt.demo
+      - me.ilya40umov.kc.coroutines.single.SingleWinnerApiKt.winnerSingle
+      - me.ilya40umov.kc.coroutines.stream.DemoStreamApiKt.demoStream
+      - me.ilya40umov.kc.coroutines.stream.StreamWinnerApiKt.winnerStream
+      - me.ilya40umov.kc.coroutines.counter.CounterApiV1Kt.counterV1
+      - me.ilya40umov.kc.coroutines.counter.CounterApiV2Kt.counterV2
+      - me.ilya40umov.kc.coroutines.counter.CounterApiV3Kt.counterV3

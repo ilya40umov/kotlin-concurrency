@@ -20,8 +20,8 @@ which is based on the concept of suspending functions and `kotlinx.coroutines` l
 
 ---
 
+* try to get rid of dependency on 'io.projectreactor.netty:reactor-netty'
 * merge or otherwise improve `coroutines` and `coroutines-new`
-* update Ktor version
 
 ---
 
@@ -29,5 +29,4 @@ which is based on the concept of suspending functions and `kotlinx.coroutines` l
 
 ---
 
-* setup build a pipeline
 * setup dependabot
