@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     application
     kotlin("jvm")
@@ -20,4 +22,14 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
     implementation("io.projectreactor.netty:reactor-netty:1.1.18")
+}
+
+application {
+    mainClass.set("me.ilya40umov.kc.coroutines.CoroutinesAppKt")
+}
+
+ktor {
+    fatJar {
+        archiveFileName.set("app.jar")
+    }
 }

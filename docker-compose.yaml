@@ -1,0 +1,35 @@
+version: "3"
+
+networks:
+  kotlin-concurrency:
+
+services:
+  classic:
+    build:
+      dockerfile: Dockerfile.app
+    volumes:
+      - ./01-classic-spring/build/libs:/opt/app
+    networks:
+      - kotlin-concurrency
+
+  reactive:
+    build:
+      dockerfile: Dockerfile.app
+    volumes:
+      - ./02-reactive-spring/build/libs:/opt/app
+    networks:
+      - kotlin-concurrency
+
+  coroutines:
+    build:
+      dockerfile: Dockerfile.app
+    volumes:
+      - ./03-coroutines-ktor/build/libs:/opt/app
+    networks:
+      - kotlin-concurrency
+
+  workbench:
+    build:
+      dockerfile: Dockerfile.workbench
+    networks:
+      - kotlin-concurrency

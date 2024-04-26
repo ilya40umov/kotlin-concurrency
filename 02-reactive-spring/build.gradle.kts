@@ -1,3 +1,5 @@
+import org.springframework.boot.gradle.tasks.bundling.BootJar
+
 plugins {
     kotlin("jvm")
     kotlin("plugin.spring")
@@ -12,4 +14,13 @@ dependencies {
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+tasks {
+    named<Jar>("jar") {
+        enabled = false
+    }
+    named<BootJar>("bootJar") {
+        archiveFileName = "app.jar"
+    }
 }
