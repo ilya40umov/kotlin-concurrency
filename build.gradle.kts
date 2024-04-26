@@ -25,7 +25,7 @@ subprojects {
     }
     dependencies {
         "implementation"("io.github.oshai:kotlin-logging-jvm:6.0.4")
-        val kotestVersion = "5.8.0"
+        val kotestVersion = "5.8.1"
         "implementation"(platform("org.junit:junit-bom:5.10.2"))
         "testImplementation"("io.kotest:kotest-runner-junit5:$kotestVersion")
         "testImplementation"("io.kotest:kotest-assertions-core:$kotestVersion")
