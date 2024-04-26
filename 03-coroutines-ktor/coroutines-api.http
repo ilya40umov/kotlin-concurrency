@@ -1,9 +1,3 @@
-### Single Winner
-GET http://localhost:9090/winner/single
-
-### Stream Winners
-GET http://localhost:9090/winner/stream
-
 ### Counter V1 - GET
 GET http://localhost:9090/counter/v1
 
@@ -21,3 +15,30 @@ GET http://localhost:9090/counter/v1
 
 ### Counter V3 - POST
 POST http://localhost:9090/counter/v1
+
+### Single Winner
+GET http://localhost:9090/winner/single
+
+### Stream Winners
+GET http://localhost:9090/winner/stream
+
+### DB Calls - GET
+GET http://localhost:9090/db_calls
+
+### Get User By ID - GET
+GET http://localhost:9090/users/123
+
+### Get Friends V1 - GET
+GET http://localhost:9090/users/123/friends/v1
+
+### Get Friends V2 - GET
+GET http://localhost:9090/users/123/friends/v2
+
+### Get Friends (Error Injected) V1 - GET
+GET http://localhost:9090/users/123/failing_friends/v1
+
+### Get Friends (Error Injected) V2 - GET
+GET http://localhost:9090/users/123/failing_friends/v2
+
+### Get Friends (Error Injected) V3 - GET
+GET http://localhost:9090/users/123/failing_friends/v3

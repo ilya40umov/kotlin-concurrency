@@ -1,13 +1,7 @@
-import org.springframework.boot.gradle.tasks.bundling.BootJar
-
 plugins {
     application
     kotlin("jvm")
     id("io.ktor.plugin")
-}
-
-application {
-    mainClass = "me.ilya40umov.kc.coroutines.CoroutinesAppKt"
 }
 
 dependencies {
@@ -25,11 +19,11 @@ dependencies {
 }
 
 application {
-    mainClass.set("me.ilya40umov.kc.coroutines.CoroutinesAppKt")
+    mainClass = "me.ilya40umov.kc.coroutines.CoroutinesAppKt"
 }
 
 ktor {
     fatJar {
-        archiveFileName.set("app.jar")
+        archiveFileName = "app.jar"
     }
 }

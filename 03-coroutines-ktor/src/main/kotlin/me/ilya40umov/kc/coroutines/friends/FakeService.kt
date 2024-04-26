@@ -1,4 +1,4 @@
-package me.ilya40umov
+package me.ilya40umov.kc.coroutines.friends
 
 import kotlinx.coroutines.delay
 import java.lang.RuntimeException

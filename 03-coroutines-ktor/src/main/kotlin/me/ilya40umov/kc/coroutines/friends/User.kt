@@ -1,4 +1,4 @@
-package me.ilya40umov
+package me.ilya40umov.kc.coroutines.friends
 
 data class User(
     val userId: Long,

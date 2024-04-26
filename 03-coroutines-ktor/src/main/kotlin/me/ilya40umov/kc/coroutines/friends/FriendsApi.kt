@@ -1,33 +1,33 @@
 @file:Suppress("DuplicatedCode")
 
-package me.ilya40umov
+package me.ilya40umov.kc.coroutines.friends
 
-import io.ktor.application.*
-import io.ktor.response.*
-import io.ktor.routing.*
+import io.ktor.server.application.Application
+import io.ktor.server.application.call
+import io.ktor.server.response.respondText
+import io.ktor.server.routing.get
+import io.ktor.server.routing.routing
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 
-@Suppress("unused") // Referenced in application.conf
-fun Application.routes(
+fun Application.friends(
     fakeService: FakeService = FakeService()
 ) {
     routing {
-
-        get("/") {
+        get("/db_calls") {
             call.respondText("Db calls count: ${fakeService.getDbCallsCount()}\n")
         }
 
-        get("/{userId}/") {
+        get("/users/{userId}") {
             val user = call.parameters["userId"]?.let {
                 fakeService.getUserById(it.toLong())
             }
             call.respondText("Name: ${user?.name}\n")
         }
 
-        get("/{userId}/friends/v1") {
+        get("/users/{userId}/friends/v1") {
             val user = call.parameters["userId"]?.let {
                 fakeService.getUserById(it.toLong())
             } ?: return@get
@@ -36,7 +36,7 @@ fun Application.routes(
             }
             call.respondText(friends.joinToString(separator = "") { "Friend: ${it.name}\n" })
         }
-        get("/{userId}/friends/v2") {
+        get("/users/{userId}/friends/v2") {
             val user = call.parameters["userId"]?.let {
                 fakeService.getUserById(it.toLong())
             } ?: return@get
@@ -46,7 +46,7 @@ fun Application.routes(
             call.respondText(friends.joinToString(separator = "") { "Friend: ${it.name}\n" })
         }
 
-        get("/{userId}/failing_friends/v1") {
+        get("/users/{userId}/failing_friends/v1") {
             val user = call.parameters["userId"]?.let {
                 fakeService.getUserById(it.toLong())
             } ?: return@get
@@ -55,7 +55,7 @@ fun Application.routes(
             }.awaitAll()
             call.respondText(friends.joinToString(separator = "") { "Friend: ${it.name}\n" })
         }
-        get("/{userId}/failing_friends/v2") {
+        get("/users/{userId}/failing_friends/v2") {
             try {
                 val user = call.parameters["userId"]?.let {
                     fakeService.getUserById(it.toLong())
@@ -69,7 +69,7 @@ fun Application.routes(
                 call.respondText { "Failed: ${e.message}" }
             }
         }
-        get("/{userId}/failing_friends/v3") {
+        get("/users/{userId}/failing_friends/v3") {
             try {
                 val user = call.parameters["userId"]?.let {
                     fakeService.getUserById(it.toLong())
