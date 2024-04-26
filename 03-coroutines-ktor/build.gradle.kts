@@ -12,7 +12,7 @@ dependencies {
     implementation("io.ktor:ktor-server-default-headers")
     implementation("io.ktor:ktor-client-apache-jvm")
 
-    implementation("ch.qos.logback:logback-classic:1.5.4")
+    implementation("ch.qos.logback:logback-classic:1.5.6")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.0")
     implementation("io.projectreactor.netty:reactor-netty:1.1.18")
