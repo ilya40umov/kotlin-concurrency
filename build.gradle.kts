@@ -24,7 +24,7 @@ subprojects {
         targetCompatibility = JavaVersion.VERSION_17
     }
     dependencies {
-        "implementation"("io.github.oshai:kotlin-logging-jvm:6.0.4")
+        "implementation"("io.github.oshai:kotlin-logging-jvm:6.0.9")
         val kotestVersion = "5.8.1"
         "implementation"(platform("org.junit:junit-bom:5.10.2"))
         "testImplementation"("io.kotest:kotest-runner-junit5:$kotestVersion")
