@@ -6,7 +6,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.4" apply false
     id("io.ktor.plugin") version "2.3.11" apply false
     kotlin("jvm") version "2.0.0" apply false
-    kotlin("plugin.spring") version "1.9.23" apply false
+    kotlin("plugin.spring") version "2.0.0" apply false
 }
 
 allprojects {
