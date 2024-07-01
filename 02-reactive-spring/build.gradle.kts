@@ -9,7 +9,7 @@ plugins {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("com.typesafe.akka:akka-actor_3:2.8.5")
+    implementation("com.typesafe.akka:akka-actor_3:2.8.6")
 
     developmentOnly("org.springframework.boot:spring-boot-devtools")
 
