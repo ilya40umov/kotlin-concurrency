@@ -15,7 +15,7 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.5.6")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor:1.8.1")
-    implementation("io.projectreactor.netty:reactor-netty:1.1.19")
+    implementation("io.projectreactor.netty:reactor-netty:1.1.20")
 }
 
 application {
